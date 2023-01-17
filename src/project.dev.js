@@ -24193,9 +24193,13 @@ window.__require = function e(t, n, r) {
       CellP3962.prototype.setColorUnavailable = function(isTarget) {
         this.node.color = this._getColor(isTarget ? Color.NotAllow : Color.NearNotAllowTarget);
       };
-      CellP3962.prototype.clearState = function() {
+      CellP3962.prototype.clearFireData = function() {
+        this.targetFire = false;
         this._isFired = false;
+      };
+      CellP3962.prototype.reset = function() {
         this._isPlacedShip = false;
+        this.clearFireData();
         this.clearColor();
       };
       CellP3962.prototype.clearColor = function() {
@@ -30723,13 +30727,12 @@ window.__require = function e(t, n, r) {
       };
       MapControllerP3962.prototype.clearTargetFire = function() {
         this.cells.forEach(function(cell) {
-          return cell.targetFire = false;
+          return cell.clearFireData();
         });
       };
       MapControllerP3962.prototype.reset = function() {
-        this.clearTargetFire();
         this.cells.forEach(function(cell) {
-          return cell.clearState();
+          return cell.reset();
         });
       };
       MapControllerP3962.prototype.place = function(cells) {
@@ -35072,7 +35075,7 @@ window.__require = function e(t, n, r) {
           if (this._cells) {
             this._currentPos = this.node.position;
             this._cells.forEach(function(i) {
-              return i.clearState();
+              return i.reset();
             });
             this._cells = null;
           }
@@ -35099,7 +35102,7 @@ window.__require = function e(t, n, r) {
         this._setAngle(this._angle, !data.isAuto);
         if (this._cells.length > 1) {
           this._cells.forEach(function(i) {
-            return i.clearState();
+            return i.reset();
           });
           var ids = data.coordinates.map(function(i) {
             return i.x + "_" + i.y;

@@ -14706,6 +14706,12 @@
           "__uuid__": "d7QxVumSRPcZ3qKTWGK6ls"
         },
         "fileId": "d1HilWZe9P6pLLFfO+M881"
+      },
+      "_scale": {
+        "__type__": "cc.Vec3",
+        "x": 0.9,
+        "y": 0.9,
+        "z": 1
       }
     },
     {
@@ -14750,9 +14756,9 @@
       },
       "_scale": {
         "__type__": "cc.Vec3",
-        "x": 0.8,
+        "x": 0.7,
         "y": 0.8,
-        "z": 0.8
+        "z": 1
       }
     },
     {
